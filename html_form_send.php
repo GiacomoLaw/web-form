@@ -17,7 +17,7 @@ if(isset($_POST['email'])) {
      
     if(!isset($_POST['first_name']) ||
         !isset($_POST['last_name']) ||
-        !isset($_POST['telephone']) ||
+        !isset($_POST['email']) ||
         !isset($_POST['comments'])) {
         died('There appears to be a problem with what you submitted.');       
     }
