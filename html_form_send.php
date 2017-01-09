@@ -2,7 +2,7 @@
 if(isset($_POST['email'])) {
 
     // Change this to your email address.
-    $email_to = "thenerdystudent@gmail.com";
+    $email_to = "greg.lawrance.gl@googlemail.com";
 
     $email_subject = "Form subission detected";
 
@@ -15,7 +15,7 @@ if(isset($_POST['email'])) {
       //  echo $error."<br /><br />";
       //  echo "Please correct these errors, and then submit again..<br /><br />";
         echo '<script type="text/javascript">
-        alert("Sorry, but errors occured '.$error.' please correct these errors.");
+        alert("Sorry, but errors occured:- '.$error.' please correct these errors.");
         window.history.back();
         </script>';
         //sleep(10);
@@ -71,9 +71,13 @@ $headers = 'From: '.$email_from."\r\n".
 @mail($email_to, $email_subject, $email_message, $headers);
 ?>
 
-Thanks for contacting us! We'll be in touch soon.
+<script type="text/javascript">
+alert("Thank you for contacting us!  We'll be in touch soon!");
+window.history.go(-2);
+</script>;
 
 <?php
 }
 die();
 ?>
+
