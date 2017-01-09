@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+  <head>
+    <script type='text/javascript'>
+    MAX_DEPTH = 32;
+
+    var canvas, ctx;
+    var stars = new Array(512);
+
+    window.onload = function() {
+      canvas = document.getElementById("starfield");
+      if( canvas && canvas.getContext ) {
+        ctx = canvas.getContext("2d");
+        initStars();
+        setInterval(loop,33);
+       }
+    }
+
+    /* Returns a random number in the range [minVal,maxVal] */
+    function randomRange(minVal,maxVal) {
+      return Math.floor(Math.random() * (maxVal - minVal - 1)) + minVal;
+    }
+
+    function initStars() {
+      for( var i = 0; i < stars.length; i++ ) {
+        stars[i] = {
+          x: randomRange(-25,25),
+          y: randomRange(-25,25),
+          z: randomRange(1,MAX_DEPTH)
+         }
+      }
+    }
+
+    function loop() {
+      var halfWidth  = canvas.width / 2;
+      var halfHeight = canvas.height / 2;
+
+      ctx.fillStyle = "rgb(0,0,0)";
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+
+      for( var i = 0; i < stars.length; i++ ) {
+        stars[i].z -= 0.2;
+
+        if( stars[i].z <= 0 ) {
+          stars[i].x = randomRange(-25,25);
+          stars[i].y = randomRange(-25,25);
+          stars[i].z = MAX_DEPTH;
+        }
+
+        var k  = 128.0 / stars[i].z;
+        var px = stars[i].x * k + halfWidth;
+        var py = stars[i].y * k + halfHeight;
+
+        if( px >= 0 && px <= 500 && py >= 0 && py <= 400 ) {
+          var size = (1 - stars[i].z / 32.0) * 5;
+          var shade = parseInt((1 - stars[i].z / 32.0) * 255);
+          ctx.fillStyle = "rgb(" + shade + "," + shade + "," + shade + ")";
+          ctx.fillRect(px,py,size,size);
+        }
+      }
+    }
+  </script>
+    <style>
+
+    form {
+        width: 450px;
+        height: 300px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+          /* bring your own prefixes */
+        transform: translate(-50%, -50%);
+        background-color: transparent;
+        margin: 0 auto;
+        border-radius: 15px;
+        border: 3px solid #222222;
+        padding: 5px;
+    }
+
+    #starfield{
+      /*position: absolute;
+      left: 20px;
+      top: 20px;*/
+
+      width:450px;
+      height:300px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+        /* bring your own prefixes */
+      transform: translate(-50%, -50%);
+      margin: 0 auto;
+      border-radius: 15px;
+      border: 3px solid #222222;
+      padding: 5px;
+    }
+
+    #inputBox {
+        border-radius: 15px;
+        border: 3px solid #222222;
+        padding: 5px;
+       	width: 250px;
+        height:20px;
+    }
+
+    #textBox {
+      border-radius: 15px;
+      border: 3px solid #222222;
+      padding: 5px;
+      width: 250px;
+    }
+
+    #submitButton{
+      border-radius: 10px;
+    }
+
+    #mailtoLabel {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.56em;
+      color: white;
+    }
+
+    #warningLabel{
+      display: block;
+      width: 450px;
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.56em;
+      color: white;
+    }
+
+    </style>
+  </head>
+<body>
+
+  <canvas id='starfield' width='500' height='400'>
+  Your browser does not support the HTML5 Canvas element.
+  Please update your browser.
+  </canvas>
+
+<form id="contactForm" name="htmlform" method="post" action="html_form_send.php">
+  <label id="warningLabel">All fields required</label>
+<table width="450px">
+  <tr>
+      <td valign="top">
+          <label id="mailtoLabel" for="first_name">First Name</label>
+      </td>
+      <td valign="top">
+          <input  id="inputBox" type="text" name="first_name" maxlength="50" size="30">
+      </td>
+  </tr>
+
+<tr>
+ <td valign="top">
+  <label id="mailtoLabel" for="last_name">Last Name</label>
+ </td>
+ <td valign="top">
+  <input  id="inputBox" type="text" name="last_name" maxlength="50" size="30">
+ </td>
+</tr>
+<tr>
+ <td valign="top">
+  <label id="mailtoLabel" for="email">Email Address</label>
+ </td>
+ <td valign="top">
+  <input id="inputBox" type="text" name="email" maxlength="80" size="30">
+ </td>
+</tr>
+<tr>
+ <td valign="top">
+  <label id="mailtoLabel" for="comments">Comments</label>
+ </td>
+ <td valign="top">
+  <textarea id="textBox" name="comments" maxlength="1000" cols="25" rows="6"></textarea>
+ </td>
+
+</tr>
+<tr>
+ <td colspan="2" style="text-align:center">
+  <input id="submitButton" type="submit" value="Submit">
+ </td>
+</tr>
+</table>
+</form>
+</body>
+</html>
