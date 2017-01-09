@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+
+    form {
+        width: 450px;
+        height: 300px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        /* bring your own prefixes */
+        transform: translate(-50%, -50%);
+        background-color: darkgrey;
+
+        margin: 0 auto;
+        border-radius: 15px;
+        border: 3px solid #222222;
+        padding: 5px;
+    }
+
+    #inputBox {
+        border-radius: 15px;
+        border: 3px solid #222222;
+        padding: 5px;
+       	width: 250px;
+        height:20px;
+    }
+
+    #textBox {
+      border-radius: 15px;
+      border: 3px solid #222222;
+      padding: 5px;
+      width: 250px;
+    }
+
+    #submitButton{
+      border-radius: 10px;
+    }
+
+    #mailtoLabel {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.56em;
+      color: black;
+    }
+
+    #warningLabel{
+      display: block;
+      width: 450px;
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.56em;
+      color: black;
+    }
+
+    </style>
+  </head>
+<body>
+<form id="contactForm" name="htmlform" method="post" action="html_form_send.php">
+  <label id="warningLabel">All Fields Required</label>
+<table width="450px">
+<tr>
+ <td valign="top">
+  <label id="mailtoLabel" for="first_name">First Name</label>
+ </td>
+ <td valign="top">
+  <input  id="inputBox" type="text" name="first_name" maxlength="50" size="30">
+ </td>
+</tr>
+
+<tr>
+ <td valign="top">
+  <label id="mailtoLabel" for="last_name">Last Name</label>
+ </td>
+ <td valign="top">
+  <input  id="inputBox" type="text" name="last_name" maxlength="50" size="30">
+ </td>
+</tr>
+<tr>
+ <td valign="top">
+  <label id="mailtoLabel" for="email">Email Address</label>
+ </td>
+ <td valign="top">
+  <input id="inputBox" type="text" name="email" maxlength="80" size="30">
+ </td>
+</tr>
+<tr>
+ <td valign="top">
+  <label id="mailtoLabel" for="comments">Comments</label>
+ </td>
+ <td valign="top">
+  <textarea id="textBox" name="comments" maxlength="1000" cols="25" rows="6"></textarea>
+ </td>
+
+</tr>
+<tr>
+ <td colspan="2" style="text-align:center">
+  <input id="submitButton" type="submit" value="Submit">
+ </td>
+</tr>
+</table>
+</form>
+</body>
+</html>
