@@ -7,7 +7,7 @@ Check out the live demo [here](https://giacomolaw.github.io/web-form/).
 
 ---
 
-# Installing onto your website
+## Installing onto your website
 Download the repo. Choose which form you want, and place that form and the php file into your website public folder.
 
 > Note that the form is designed to be a separate page, but you can imbed it if you want to.
